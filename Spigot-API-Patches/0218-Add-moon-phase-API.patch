@@ -47,10 +47,10 @@ index 0000000000000000000000000000000000000000..df05153397b42930cd53d37b30824c7e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 703488b1693cae99c8f8a1a7bad34695b6cc51bf..e6d2abf284c103a8bcddd8b4f9cb34d86a4f2fa6 100644
+index c1010e314144a65e12eaf5514d639a87f45891a9..3c50a10fda033c139993ed5465a92f95d5b10c17 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -70,6 +70,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
+@@ -70,6 +70,12 @@ public interface World extends PluginMessageRecipient, Metadatable, net.kyori.ad
       * @return The amount of Players in this world
       */
      int getPlayerCount();

@@ -6,10 +6,10 @@ Subject: [PATCH] Add Raw Byte ItemStack Serialization
 Serializes using NBT which is safer for server data migrations than bukkits format.
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 541e28a9bece0beb0c2cf02c39030840b758c6e6..d3ec5084e33dff038d54cdd2aeb703a3eb25f7a7 100644
+index 3aacc3103698144b343facdd7f4a35fbdb62e241..b824a1b0590014d428e64f789008454bd241996a 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -90,5 +90,9 @@ public interface UnsafeValues {
+@@ -91,5 +91,9 @@ public interface UnsafeValues {
      static boolean isLegacyPlugin(org.bukkit.plugin.Plugin plugin) {
          return !Bukkit.getUnsafe().isSupportedApiVersion(plugin.getDescription().getAPIVersion());
      }
@@ -20,10 +20,10 @@ index 541e28a9bece0beb0c2cf02c39030840b758c6e6..d3ec5084e33dff038d54cdd2aeb703a3
      // Paper end
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index d7d6a3e83dfd88359708749f5c12be02815c3580..ccd81fca25233c2a9c2a8c3f4dda3053d7b2e723 100644
+index 3d63514729ddc30ff559a65815612be81e777892..58f99e3ebac9a01ebffe4d208e16cbee474d4aa3 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
-@@ -613,6 +613,29 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
+@@ -619,6 +619,30 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, net.kyor
          return Bukkit.getServer().getItemFactory().ensureServerConversions(this);
      }
  
@@ -33,6 +33,7 @@ index d7d6a3e83dfd88359708749f5c12be02815c3580..ccd81fca25233c2a9c2a8c3f4dda3053
 +     *
 +     * This expects that the DataVersion was stored on the root of the Compound, as saved from
 +     * the {@link #serializeAsBytes()} API returned.
++     * @param bytes bytes representing an item in NBT
 +     * @return ItemStack migrated to this version of Minecraft if needed.
 +     */
 +    @NotNull

@@ -10,10 +10,10 @@ Adds a 5 second grace period for any async tasks to finish and warns
 if any are still running after that delay just as reload does.
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index a91a581b25b19d62949f641847b633208672fb1e..450c04c5a1153ea9d11d005f3be623bbf8b26ce6 100644
+index 580e08347d06e6b4b9558b3f25f1f095c41fcf91..2deeaf23b8dd0ee5dc126797b271681a5f7880df 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -767,6 +767,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -882,6 +882,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
          // CraftBukkit start
          if (this.server != null) {
              this.server.disablePlugins();
@@ -22,10 +22,10 @@ index a91a581b25b19d62949f641847b633208672fb1e..450c04c5a1153ea9d11d005f3be623bb
          // CraftBukkit end
          if (this.getServerConnection() != null) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 2b2d292fdd13d86159a791acfd1e70217401e795..9319dccbe6a33001cfb27866fd1d078e73fcc1e7 100644
+index 3014a5d71de98009bdc121ba690c3653c2eef120..32e68e403950be62bd0330b268738225c2e70edd 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -935,6 +935,35 @@ public final class CraftServer implements Server {
+@@ -942,6 +942,35 @@ public final class CraftServer implements Server {
          org.spigotmc.WatchdogThread.hasStarted = true; // Paper - Disable watchdog early timeout on reload
      }
  

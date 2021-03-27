@@ -2062,10 +2062,10 @@ index 0000000000000000000000000000000000000000..80155072d1004e34e04342d434cf7d75
 +}
 diff --git a/src/main/java/co/aikar/util/JSONUtil.java b/src/main/java/co/aikar/util/JSONUtil.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7b0cf8a89d65f175df47a7dff0aa800ef91bc95c
+index 0000000000000000000000000000000000000000..190bf0598442c89c2a1c93ad7c8c1a29797304ae
 --- /dev/null
 +++ b/src/main/java/co/aikar/util/JSONUtil.java
-@@ -0,0 +1,137 @@
+@@ -0,0 +1,140 @@
 +package co.aikar.util;
 +
 +import com.google.common.base.Function;
@@ -2073,7 +2073,10 @@ index 0000000000000000000000000000000000000000..7b0cf8a89d65f175df47a7dff0aa800e
 +import com.google.common.collect.Maps;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
++import org.json.simple.JSONArray;
++import org.json.simple.JSONObject;
 +
++import java.util.ArrayList;
 +import java.util.LinkedHashMap;
 +import java.util.List;
 +import java.util.Map;
@@ -2777,10 +2780,10 @@ index 0000000000000000000000000000000000000000..5989ee21297935651b0edd44b8239e65
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 2e059809021ea639c27d8a202a2962de1dae8168..f1585968b13007b0f9b8c69ac3c2eff28a0fc89e 100644
+index 7168dd083ee30a47b104ab32cabb3215815f7470..7c715fdc11ab7837552b1fe3ffd08b31cec0a63b 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -640,7 +640,6 @@ public final class Bukkit {
+@@ -649,7 +649,6 @@ public final class Bukkit {
       */
      public static void reload() {
          server.reload();
@@ -2789,10 +2792,10 @@ index 2e059809021ea639c27d8a202a2962de1dae8168..f1585968b13007b0f9b8c69ac3c2eff2
  
      /**
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index e43ba4c97b4a61e2b49c58553c39d0757521418d..6cbc22c08ce421bcd8bf3efabc96c9cec447faee 100644
+index 4ba8572f1beb3b9ad46620946eb4ee89ac91818e..a6b9e4f158583e5932bf8ca210d531857e9f5360 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1337,6 +1337,26 @@ public interface Server extends PluginMessageRecipient {
+@@ -1344,6 +1344,26 @@ public interface Server extends PluginMessageRecipient {
              throw new UnsupportedOperationException("Not supported yet.");
          }
  
@@ -3372,10 +3375,10 @@ index 2a145d851ce30360aa39549745bd87590c034584..00000000000000000000000000000000
 -    // Spigot end
 -}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 40345617fd387afe6d2ec7ff7043b3a3538f19f7..f22b21ee12496452f7b2125c131f56ecc74d439a 100644
+index 90c8c3eb8bc3285bf7a51da89015304e49e6602c..344aecc097c5e12476d2be53019145812b028914 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1391,7 +1391,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1353,7 +1353,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
           */
          public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
              throw new UnsupportedOperationException("Not supported yet.");

@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
+        mavenLocal() // TODO: Remove!
         maven("https://repo.demonwav.com/snapshots/")
     }
 }

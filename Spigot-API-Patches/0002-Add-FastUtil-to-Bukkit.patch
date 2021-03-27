@@ -1,20 +1,19 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
-Date: Sun, 13 Dec 2020 16:32:58 -0800
+Date: Fri, 1 Apr 2016 00:02:47 -0400
 Subject: [PATCH] Add FastUtil to Bukkit
 
 Doesn't expose to plugins, just allows Paper-API to use it for optimization
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 264db3850908fe82b7cf69c0343e93cb7a2274aa..ecb8c1e44adf76433dad50dd12160d4db0cdd93c 100644
+index ce14523b8f3d6dd5b12b4de7987ec57413c65347..11a7daeb18b31402de49b259c04f7c5ae711fbeb 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -16,6 +16,8 @@ dependencies {
-     api("net.md-5:bungeecord-chat:1.16-R0.3")
-     api("org.yaml:snakeyaml:1.26")
+@@ -21,6 +21,7 @@ dependencies {
+     api("net.kyori:adventure-text-serializer-gson:$adventureVersion")
+     api("net.kyori:adventure-text-serializer-legacy:$adventureVersion")
+     api("net.kyori:adventure-text-serializer-plain:$adventureVersion")
++    compileOnlyApi("it.unimi.dsi:fastutil:8.2.2")
  
-+    compileOnly("it.unimi.dsi:fastutil:8.2.2")
-+
-     val annotations = "org.jetbrains:annotations-java5:19.0.0"
+     val annotations = "org.jetbrains:annotations-java5:20.1.0"
      compileOnly(annotations)
-     testCompileOnly(annotations)
