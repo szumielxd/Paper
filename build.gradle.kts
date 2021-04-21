@@ -1,11 +1,11 @@
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "6.1.0" apply false
-    id("io.papermc.paperweight") version "1.0.0-SNAPSHOT"
+    id("io.papermc.paperweight") version "1.0.0-LOCAL-SNAPSHOT"
 }
 
 group = "com.destroystokyo.paper"
-version = providers.gradleProperty("projectVersion")
+version = providers.gradleProperty("projectVersion").forUseAtConfigurationTime().get()
 
 val mcVersion = providers.gradleProperty("mcVersion")
 val packageVersion = providers.gradleProperty("packageVersion")
@@ -42,7 +42,8 @@ subprojects {
 }
 
 repositories {
-    maven("https://repo.demonwav.com/snapshots/")
+    mavenLocal()
+    maven("https://wav.jfrog.io/artifactory/repo/")
 }
 
 dependencies {

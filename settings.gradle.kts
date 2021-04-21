@@ -1,7 +1,8 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        maven("https://repo.demonwav.com/snapshots/")
+        maven("https://wav.jfrog.io/artifactory/repo/")
+        mavenLocal()
     }
 }
 
