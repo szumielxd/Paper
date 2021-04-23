@@ -1,0 +1,4 @@
+IHopper v ()LWorld; getLevel
+EntityMinecartHopper v ()LWorld; getLevel
+IMerchant eV ()LWorld; getLevel
+EntityVillagerAbstract eV ()LWorld; getLevel

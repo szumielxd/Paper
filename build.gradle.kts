@@ -60,5 +60,7 @@ paperweight {
 
     paper {
         mappingsPatch.set(file("build-data/mappings-patch.tiny"))
+
+        additionalSpigotMemberMappings.set(file("build-data/additional-spigot-member-mappings.csrg"))
     }
 }

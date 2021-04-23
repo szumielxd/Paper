@@ -28,21 +28,26 @@ c	net/minecraft/server/EntityTippedArrow	net/minecraft/world/entity/projectile/A
 c	net/minecraft/server/TileEntityBeacon	net/minecraft/world/level/block/entity/BeaconBlockEntity
 	m	()I	getLevel	getLevelCb
 
-# CraftBukkit maps both Merchant.getLevel() and Entity.getCommandSenderWorld() to getWorld(), which confuses our ability
-# to map this method properly. This patch disambiguates it
-c	net/minecraft/server/EntityVillagerAbstract	net/minecraft/world/entity/npc/AbstractVillager
-	m	()Lnet/minecraft/server/World;	getWorld	getLevel
+# CraftBukkit maps all of:
+#     Merchant.getLevel()
+#     Hopper.getLevel()
+#     Entity.getCommandSenderWorld()
+# to getWorld(), which confuses our ability to map this method properly. This patch disambiguates it
+#c	net/minecraft/server/EntityMinecartHopper	net/minecraft/world/entity/vehicle/MinecartHopper
+#	m	()Lnet/minecraft/server/World;	getWorld	getLevel
+#c	net/minecraft/server/EntityVillagerAbstract	net/minecraft/world/entity/npc/AbstractVillager
+#	m	()Lnet/minecraft/server/World;	getWorld	getLevel
 
 # CraftBukkit adds the getLootTable() method, clashes with original method
 c	net/minecraft/server/EntityInsentient	net/minecraft/world/entity/Mob
 	m	()Lnet/minecraft/server/MinecraftKey;	getLootTable	getLootTableCb
 
-# CraftBukkit adds the canCollideWithCb() method, clashes with original method
+# CraftBukkit adds the canCollideWith() method, clashes with original method
 c	net/minecraft/server/Entity	net/minecraft/world/entity/Entity
 	m	(Lnet/minecraft/server/Entity;)Z	canCollideWith	canCollideWithCb
 
 # CraftBukkit adds a new `a` method which allows passing the Entity parameter
-# It uses `a` to match the original method (with just 1 param), so this patch makes the match
+# It uses `a` to match the original method (with just 1 param), so this patch makes them match
 c	net/minecraft/server/WorldServer	net/minecraft/server/level/ServerLevel
 	m	(Lnet/minecraft/server/WorldServer;Lnet/minecraft/server/Entity;)V	a	makeObsidianPlatform
 
@@ -52,9 +57,9 @@ c	net/minecraft/server/GeneratorAccess	net/minecraft/world/level/LevelAccessor
 	m	()Lnet/minecraft/server/WorldServer;	getMinecraftWorld	getLevel
 
 # SpecialSource2 automatically maps methods to the name of synthetic methods that point to it in an attempt to
-# normalize method names with what is expected by the super class. This is flawed however because synthetic
-# methods by definition have different descriptors than the base method, which means method signature clashes
-# become possible, which is what happens here.
+# normalize method names with what is expected by the super class. This is _extremely_ stupid and flawed however
+# because synthetic methods by definition have different descriptors than the base method, which means method
+# signature clashes become possible, which is what happens here.
 #
 # LootEntryAbstract$Serializer has a synthetic method pointing to the base serialize() method with the following descriptor:
 #
@@ -81,5 +86,5 @@ c	net/minecraft/server/LootEntryAbstract$Serializer	net/minecraft/world/level/st
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/server/LootEntryAbstract;Lcom/google/gson/JsonSerializationContext;)V	serializeType	serializeCustom
 
 # TODO figure out what's going on here
-c	net/minecraft/server/EntityInsentient	net/minecraft/world/entity/Mob
-	m	(Lnet/minecraft/server/EntityHuman;Lnet/minecraft/server/EntityInsentient;)V	a	onOffspringSpawnedFromEgg
+#c	net/minecraft/server/EntityInsentient	net/minecraft/world/entity/Mob
+#	m	(Lnet/minecraft/server/EntityHuman;Lnet/minecraft/server/EntityInsentient;)V	a	onOffspringSpawnedFromEgg
